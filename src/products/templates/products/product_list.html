@@ -2,6 +2,9 @@
 
 {% block content %}
 
+<div class="container">
+<h3>Products</h3>
+<p>These are the listed Products by the store owner</p>
 <div class=row>
 {% for instance in object_list %}
           <!--Grid column-->
@@ -100,4 +103,5 @@
         </ul>
       </nav>
       <!--Pagination-->
+</div>
 {% endblock content %}
