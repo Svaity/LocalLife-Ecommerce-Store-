@@ -12,7 +12,7 @@
         <!--Grid column-->
         <div class="col-md-6 mb-4">
         {%if object.image%}
-    <img src="{{  object.image.url  }}" class="img-responsive" alt="image-{{object.title}}"/>
+    <img src="{{  object.image.url  }}" class="img-responsive" alt="image-{{object.title}}" height='450px' width='400px'/>
 {%endif%}
 
         </div>
@@ -29,11 +29,8 @@
                 <span class="badge blue mr-1">{{object.store}}</span>
               </a>
             </div>
-
             <p class="lead">
-              <span class="mr-1">
-                <del>{{object.price}}</del>
-              </span>
+              <span>${{object.price}}</span>
             </p>
 
             <p class="lead font-weight-bold">Description</p>
