@@ -3,6 +3,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .forms import ProductForm, RawProductForm
 from .models import Product
 from django.db.models import Q
+from store.models import Store
+from django.contrib.auth.models import User
+from django.views.generic import ListView
 
 # Create your views here.
 
@@ -42,6 +45,7 @@ def product_create_view(request):
         'form': form
     }
     return render(request, "products/product_create.html", context)
+
 # edit view
 
 
@@ -72,11 +76,11 @@ def product_list_view(request):
     context = {
         "object_list": queryset
     }
+    # return render(request, "lst.html", context)
     return render(request, "products/product_list.html", context)
 
+
 # Search Field - Products
-
-
 def search(request):
     try:
         q = request.GET.get("q")
@@ -85,8 +89,24 @@ def search(request):
     if q:
         queryset = Product.objects.filter(title__icontains=q)
         context = {'query': q, 'products': queryset}
+        #template = 'lst.html'
         template = 'products/results.html'
     else:
         template = 'products/home.html'
         context = {}
     return render(request, template, context)
+
+# trial
+
+
+# class IndexView(ListView):
+#     context_object_name = 'prod_list'
+#     template_name = 'store/store_detail.html'
+#     queryset = Product.objects.all()
+
+#     def get_context_data(self, **kwargs):
+#         context = super(IndexView, self).get_context_data(**kwargs)
+#         context['name'] = Product.objects.all()
+#         context['owner_id'] = User.objects.all()
+#         return context
+

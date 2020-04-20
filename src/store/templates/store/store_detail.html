@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block style %}
+<style>
+    .mr-2 {
+        text-transform: capitalize;
+    }
+    .text-muted {
+        text-transform: capitalize;
+    }
+    .content-section {
+        background: transparent;
+        border-radius: 3px;
+        margin: 20px 550px 0px 20px;
+        border: 1px solid #eee;
+        box-shadow: 0 2px 2px grey;
+        padding: 15px;
+        width: 70%;
+    }
+</style>
+{% endblock style %}
+
+{% block content %}
+
+<div class="container">
+
+          <div class="col-lg-12 col-md-6 mb-4 d-flex">
+            <div class="card h-40 w-100">
+              <div class="card-body  justify-content-center">
+                <h4 class="card-title">
+                  <a class="mr-2" href="#">{{ store.restaurant_name }}</a>
+                </h4>
+                <small class="text-muted">{{ prdct_list }}</small>
+                <small class="text-muted">{{ store.city }}</small>
+                <small class="text-muted ml-4">Mobile: {{ store.mobile }}</small>
+                <p class="card-text">{{store.description}}</p>
+                            {% if object.owner == user %}
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'store-update' object.id %}">Update</a>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'store-delete' object.id %}">Delete</a>
+                <a class="btn btn-primary btn-sm mt-1 mb-1" href="/products/create">Add Product</a>
+            {% endif %}
+              </div>
+            </div>
+          </div>
+{% include "lst.html" %}
+</div>
+
+
+
+
+{% endblock content %}
