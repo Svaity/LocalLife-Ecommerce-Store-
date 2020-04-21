@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import home, about
-from .views import StoreListView, StoreDetailView, StoreCreateView, StoreUpdateView, StoreDeleteView, IndexView
+from .views import home
+from .views import StoreListView, StoreDetailView, StoreCreateView, StoreUpdateView, StoreDeleteView
 
 
 urlpatterns = [

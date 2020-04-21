@@ -1,15 +1,13 @@
 from django.shortcuts import render
-from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Store
 from products.models import Product
-# from products.views import search
 
 
 def home(request):
     context = {
-        'stores': Store.objects.all(),
+        'stores': Store.objects.all()
     }
 
     return render(request, 'store/home.html', context)
@@ -17,7 +15,7 @@ def home(request):
 
 class StoreListView(ListView):
     model = Store
-    template_name = 'store/home.html'  # <app>/<model>_<viewtype>.html
+    template_name = 'store/home.html'  # <app>/<model>_<view_type>.html
     context_object_name = 'stores'
 
 
@@ -27,8 +25,8 @@ class StoreDetailView(DetailView):
 
 class StoreCreateView(LoginRequiredMixin, CreateView):
     model = Store
-    fields = ['restaurant_name', 'description', 'restaurant_address', 'restaurant_address_2', 'mobile',
-              'email', 'city', 'state']
+    fields = ['store_name', 'description', 'store_address', 'store_address_2', 'mobile',
+              'email', 'city', 'state', 'country']
     success_url = '/'  # navigate to home page after creating a new store.
 
     # uncomment when owner is added in models.py
@@ -39,7 +37,7 @@ class StoreCreateView(LoginRequiredMixin, CreateView):
 
 class StoreUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Store
-    fields = ['restaurant_name', 'description', 'restaurant_address', 'restaurant_address_2', 'mobile',
+    fields = ['store_name', 'description', 'store_address', 'store_address_2', 'mobile',
               'email', 'city', 'state']
     success_url = '/'  # navigate to home page after creating a new store.
 
@@ -68,24 +66,23 @@ class StoreDeleteView(LoginRequiredMixin, DeleteView):
         return False
 
 
-def about(request):
-    return render(request, 'store/about.html')  # {'title': 'About'}
+# def about(request):
+#     return render(request, 'store/about.html')  # {'title': 'About'}
 
 # trial
 
+def product_list_view(request):
+    queryset = Product.objects.all()
+    context = {
+        "object_list": queryset
+    }
+    return render(request, "store/store_detail.html", context)
 
-# class IndexView(DetailView):
-#     model = Store
-#     template_name = 'lst.html'
 
-#     def get_context_data(self, *args, **kwargs):
-#         context = super(IndexView, self).get_context_data(*args, **kwargs)
-#         context['id'] = Store.objects.all()
-#         return context
 class IndexView(DetailView):
     model = Store
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['id'] = Product.objects.all()
+    def get_context_data(self, *args, **kwargs):
+        context = super(IndexView, self).get_context_data(*args, **kwargs)
+        context['products'] = Product.objects.all()
         return context

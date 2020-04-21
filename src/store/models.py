@@ -1,4 +1,3 @@
-
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
@@ -34,10 +33,10 @@ class Store(models.Model):
                                                    'West Virginia'), ('WI', 'Wisconsin'), ('WY', 'Wyoming'),
     )
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    restaurant_name = models.CharField(max_length=250)
+    store_name = models.CharField(max_length=250)
     description = models.CharField(max_length=1000, null=True)
-    restaurant_address = models.CharField(max_length=250)
-    restaurant_address_2 = models.CharField(max_length=250)
+    store_address = models.CharField(max_length=250)
+    store_address_2 = models.CharField(max_length=250)
     mobile = models.PositiveIntegerField()
     email = models.EmailField(max_length=100)
     city = models.CharField(max_length=100)
@@ -49,7 +48,7 @@ class Store(models.Model):
     registration_date = models.DateField(default=timezone.now)
 
     def __repr__(self):
-        return self.restaurant_name
+        return self.store_name
 
     # un-comment if you want to navigate to Store detail page after creating a new store.
     def get_absolute_url(self):
