@@ -32,6 +32,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('s/', search, name='search'),
     path("register/", v.register, name="register"),
+    path('profile/', include('users.urls', namespace='accounts')),
+
     path('', include("django.contrib.auth.urls")),
 
     # Products App
@@ -42,7 +44,8 @@ urlpatterns = [
 
     path('', include('store.urls')),
 
-    # User App
+    # Cart App
+    path('', include('shopping_cart.urls', namespace='shopping_cart')),
 
     # Recommendation App
 

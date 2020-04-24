@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'pages',
     'register',
     'store',
+    'users',
+    'shopping_cart',
+    # 'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -107,6 +110,20 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Stripe and Braintree Settings
+
+if DEBUG:
+    # test keys
+    STRIPE_PUBLISHABLE_KEY = ''
+    STRIPE_SECRET_KEY = ''
+    BT_ENVIRONMENT = 'sandbox'
+    BT_MERCHANT_ID = 'YOUR BT_MERCHANT_ID'
+    BT_PUBLIC_KEY = 'YOUR BT_PUBLIC_KEY'
+    BT_PRIVATE_KEY = 'YOUR BT_PRIVATE_KEY'
+else:
+    # live keys
+    STRIPE_PUBLISHABLE_KEY = 'YOUR STRIPE LIVE PUB KEY'
+    STRIPE_SECRET_KEY = 'YOUR STRIPE LIVE SECRET KEY'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -130,3 +147,4 @@ STATIC_URL = '/static/'
 # new for media upload
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'products/media')
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

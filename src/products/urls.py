@@ -5,7 +5,7 @@ appname = 'products'
 urlpatterns = [
 
     #Product - Add, Delete, View, List
-    path('products/', product_detail_view),
+    path('products/', product_detail_view, name='product_list'),
     path('<int:id>/', dynamic_lookup_view, name='product-detail'),
     path('<int:id>/update/', product_update_view, name='product-update'),
     path('<int:id>/delete/', product_delete_view, name='product-delete'),
