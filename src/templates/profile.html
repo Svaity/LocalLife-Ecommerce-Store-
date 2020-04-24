@@ -8,6 +8,7 @@
         <th>Reference Code</th>
         <th>Items</th>
         <th>Price</th>
+        <th>Ordered by</th>
       </tr>
       {% for order in my_orders %}
         <tr>
@@ -15,11 +16,12 @@
           <td>{{ order.ref_code }}</td>
           <td>
         	{% for item in order.items.all %}
-        		{{ item.product.title }}
-            {{ item.product.store }}
+        		{{ item.product.title }},
+            {% comment %} {{ item.product.store }} {% endcomment %}
       		{% endfor %}
       	  </td>
           <td>${{ order.get_cart_total }}</td>
+          <td>{{my_user.first}}</td>
 
         </tr>
       {% empty %}
