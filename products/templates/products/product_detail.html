@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!--Main layout-->
+<main class="mt-5 pt-4">
+<div class="container dark-grey-text mt-5">
+  <div class="row wow fadeIn">
+    <div class="col-md-6 mb-4">
+      {%if object.image%}
+        <img src="{{  object.image.url  }}" class="img-responsive" alt="image-{{object.title}}" height='450px' width='400px'/>
+      {%endif%}
+    </div>
+    <div class="col-md-6 mb-4">
+      <div class="p-4">
+        <h3>{{object.title}}</h3>
+        <div class="mb-3">
+        {%if object.store %}
+          <p>Sold by: <a href="{% url 'store-detail' object.store.id %}"> {{object.store.store_name}}</a></p>
+          </a>
+          {% endif %}
+        </div>
+        <p class="lead font-weight-bold">
+          <span>Price: ${{object.price}}</span>
+        </p>
+        <p class="lead font-weight-normal">Product details: {{object.description}}</p>
+            <form class="d-flex justify-content-left">
+              <!-- Default input -->
+
+            <a href="{% url 'shopping_cart:add_to_cart' object.id %}" class="btn btn-primary btn-md my-0 p">Add to Cart<i class="fas fa-shopping-cart ml-1"></i></a>
+            
+            
+            </form>
+        <script>
+          function check(input) {
+            if (input.valueOf(input) > 0) {
+              input.setCustomValidity('');
+            } else {
+              input.setCustomValidity('Product count can be either 1 or greater than 1');
+            }
+          }
+        </script>
+      </div>
+    </div>
+  </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</div>
+</main>
+{% endblock content %}
