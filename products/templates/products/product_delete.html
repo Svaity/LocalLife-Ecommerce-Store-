@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class= 'container'>
+    <form action='.' method='POST'>
+        <br>
+        {% csrf_token %}
+        <h5>Are you sure you want to delete the product "{{object.title}}"?</h5>
+        <input class="btn btn-danger btn-sm mt-1 mb-1" type='submit' value='Yes'/>
+        <a class="cancel-link ml-2" href='/products/'>Cancel</a>
+    </form>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+{% endblock content %}

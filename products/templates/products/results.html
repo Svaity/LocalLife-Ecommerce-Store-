@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<div class="container ml-10">
+    <h4 class="text-secondary ml-3">Search results: <span class="black-text" style="color: black">{{query}}</span></h4>
+    {% for instance in products %}
+        <div class="col-lg-3 col-md-6">
+            <div class="card h-20">
+                <div class="card-img-top">
+                {%if instance.image %}
+                    <img src="{{ instance.image.url }}" class="card-img-top" alt="image-{{ instance.title }}"/>
+                {% else %}
+                    <img src="http://placehold.it/700x400" class="card-img-top" alt="image-{{ instance.title }}"/>
+                {%endif%}
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="{{ instance.get_absolute_url }}" class="grey-text">
+                                <h5 class="card-title"><a href="{{ instance.get_absolute_url }}" class="dark-grey-text">{{instance.title}}</a>
+                                </h5>
+                                <h6 class="font-weight-normal">{{ instance.description }}</h6>
+                            </a>
+                        </h4>
+                        <h5>${{ instance.price }}</h5>
+                        {%if instance.store %}
+                            <h8>
+                                <span>Sold by: <a href="{% url 'store-detail' instance.store.id %}"
+                                                           class="dark-grey-text">{{ instance.store.store_name }}</a>
+                                </span>
+                            </h8>
+                        {% endif %}
+                        <div class="">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endblock content %}
